@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Dimensions</title>
+</head>
+<body>
+    <form id="boxForm">
+        <label for="length">Length:</label>
+        <input type="number" id="length" name="length" step="0.01"><br><br>
+
+        <label for="height">Height:</label>
+        <input type="number" id="height" name="height" step="0.01"><br><br>
+                
+        <label for="thickness">Thickness:</label>
+        <input type="number" id="thickness" name="thickness" step="0.01"><br><br>
+        
+        <label for="zipFrom">Zip From:</label>
+        <input type="number" id="zipFrom" name="zipFrom" step="1"><br><br>
+        
+        <label for="zipTo">Zip To:</label>
+        <input type="number" id="zipTo" name="zipTo" step="1"><br><br>
+        
+        <button type="button" onclick="main()">Submit</button>
+    </form>
+
+    <script>
+        /**
+         * Main function to read in the data from the form
+         */
+        function main() {
+            // Read in the data from the form
+            const length = parseFloat(document.getElementById('length').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const thickness = parseFloat(document.getElementById('thickness').value);
+            const zipFrom = parseInt(document.getElementById('zipFrom').value);
+            const zipTo = parseInt(document.getElementById('zipTo').value);
+
+
+            post_type = get_type(length,height,thickness);
+            total_zones = find_distince(zipFrom, zipTo);
+            alert(post_type);
+            alert(total_zones);
+            cost = find_cost(post_type, total_zones);
+            alert(cost);
+
+        }
+
+        /**
+         * Function to get zip information
+         * @param {number} zip - The zip code
+         */
+        
+    function zone(zipcode)
+    {
+    if ((1 <= zipcode) && (zipcode <= 6999))
+    {
+        return 1
+    }
+    else if ((zipcode >= 7000) && (zipcode <= 19999))
+        {
+            return 2;
+        }
+    else if ((zipcode >= 20000) && (zipcode <= 35999))
+        {
+            return 3;
+        }
+    else if ((zipcode >= 36000) && (zipcode <= 62999))
+        {
+            return 4;
+        }
+    else if ((zipcode >= 63000) && (zipcode <= 84999)) 
+    {
+        return 5;
+    } else if ((zipcode >= 85000) && (zipcode <= 99999))
+        {return 6}
+    else
+    {
+        return 'UNMAILABLE';
+    }
+        }
+function get_type(length,height,thickness)
+        {
+    perimiter = length + 2*(height + thickness)
+
+    if ((3.5 <= length && length <= 4.25) && (3.5 <= height && height <= 6 && .007 <= thickness && thickness <= .016))
+        {
+            return 'Regular Post Card';
+        }
+    else if ((4.25 < length && length <= 6) && (6 <= height && height <= 11.5 && .007 <= thickness && thickness <= 0.15))
+        {
+            return 'Large Post Card';
+        }
+    else if ((3.5 <= length && length <= 6.125) && (5 <= height && height <= 11.5 && 0.16 <= thickness && thickness <= .24))
+        {
+            return 'Envelope';
+        }
+    else if ((6.125 <= length && lenght <= 24) && (11 <= height && height <= 18 && 0.25 <= thickness && thickness <= 0.5))
+        {
+            return 'Large Envelope';
+        }
+    else if ((length > 24 || height > 18) || (thickness  > .5 && perimiter <= 84))
+        {
+            return 'Package';
+        }
+    else if ((length > 24) || (height > 18) || (thickness > .5 && 84 < perimiter && perimiter <= 130))
+        {
+            return 'Large Package';
+        }
+    else
+        {
+            return 'UNMAILABLE';
+        }
+        }
+
+function find_cost(post_type, total_zones)   
+        {
+    if (post_type == 'Regular Post Card')
+        {
+            return .20 + .03*total_zones;
+        }
+    else if (post_type == 'Large Post Card')
+        {
+            return .37 + .03* total_zones;
+        }
+    else if (post_type == 'Envelope')
+        {
+            return .37 + .04* total_zones;
+        }
+    else if (post_type == 'Large Envelope')
+        {
+            return .60 + .05* total_zones;
+        }
+    else if (post_type == 'Package')
+        {
+            return 2.95 + .25* total_zones;
+        }
+    else (post_type == 'Large Package')
+        {
+            return 3.95 + .35* total_zones;
+        }
+        }
+
+
+function find_distince(startzip, endzip)
+            {
+    startzone = zone(startzip)
+    endzone = zone(endzip)
+
+    if (startzone == 'UNMAILABLE' || endzone == 'UNMAILABLE')
+        {
+            return 'UNMAILABLE';
+        }
+    else{
+        return Math.abs(startzone - endzone);
+        }
+    }
+
+
+    </script>
+</body>
+</html>
