@@ -1,17 +1,24 @@
 
 def display_board(board): # Prints the tic tac toe board
+      
       print (f"""
 1  {board[0][0]} | {board[0][1]} | {board[0][2]}
 -----------
 2 {board[1][0]} | {board[1][1]} | {board[1][2]}
 -----------
 3 {board[2][0]} | {board[2][1]} | {board[2][2]}
+ """
+      Displays the current tic tac toe board.
 
+      Parameters:
+      board  representing the game board
+      """
 
 
 """)
 
 def player_move(board, player): # Handles a player's move
+      
 
       while True:
             while True: ## Keeps asking until a valid move is made
@@ -36,7 +43,14 @@ def player_move(board, player): # Handles a player's move
             else:
                   print('spot taken')
                   continue
+ """
+      Lets a player choose a row and column
+      and places their symbol on the board.
 
+      Parameters:
+      board (list): 2D game board
+      player (str): Current player's symbol ('x' or 'o')
+      """
                   
 
 def is_draw(board): # Checks if the game is a draw
@@ -45,6 +59,15 @@ def is_draw(board): # Checks if the game is a draw
             return False
       return True
              # If no spaces left, it's a draw
+    """
+      Checks if the game board is full.
+
+      Parameters:
+      board (list): 2D game board
+
+      Returns:
+       True if draw, False otherwise
+      """         
 
 def check_winner_board(board): ## Checks if someone won the game
       while True:
@@ -121,7 +144,15 @@ def check_winner_board(board): ## Checks if someone won the game
                   return True
             else:     # No winner found
                   return False
-                                                                                    
+            """
+      Checks if a player has won the game.
+
+      Parameters:
+      board (list): 2D game board
+
+      Returns:
+      bool: True if someone won, False otherwise
+      """                                                                         
 
 def main(): # Main game function
       while True:
@@ -166,5 +197,10 @@ def main(): # Main game function
             play_again = input("do you want to play again(y,n)") # Ask to play again
             if play_again == 'n':   # Ends game if player types n
                   break
+      """
+Runs the tic tac toe game loop.
+Handles player setup, turns,
+winner checking, and replay option.
+"""
 main()
         
