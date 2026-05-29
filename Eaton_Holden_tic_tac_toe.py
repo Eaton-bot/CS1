@@ -1,25 +1,30 @@
 
 def display_board(board): # Prints the tic tac toe board
-      
-      print (f"""
-1  {board[0][0]} | {board[0][1]} | {board[0][2]}
------------
-2 {board[1][0]} | {board[1][1]} | {board[1][2]}
------------
-3 {board[2][0]} | {board[2][1]} | {board[2][2]}
- """
+      """
       Displays the current tic tac toe board.
 
       Parameters:
       board  representing the game board
       """
+      print(f"""
+1  {board[0][0]} | {board[0][1]} | {board[0][2]}
+-----------
+2 {board[1][0]} | {board[1][1]} | {board[1][2]}
+-----------
+3 {board[2][0]} | {board[2][1]} | {board[2][2]}
+      """)
 
+def player_move(board, player):
+      """
+      Lets a player choose a row and column and places their symbol on the board.
 
-""")
-
-def player_move(board, player): # Handles a player's move
-      
-
+      Args:
+            board (list): 2D game board
+            player (str): Current player's symbol ('x' or 'o')
+      Raises:
+            ValueError: WHEN
+      """
+                 
       while True:
             while True: ## Keeps asking until a valid move is made
                   try:  # Ask player for column and subtract 1
@@ -54,22 +59,32 @@ def player_move(board, player): # Handles a player's move
                   
 
 def is_draw(board): # Checks if the game is a draw
-      if board [0][0] == ' ' or board [0][1] == ' ' or board [0][2] == ' ' or board [1][0]  or board [1][1] == ' '  or board [1][2] == ' '   or board [2][0] == ' 'or board [2][1] == ' '  or board [2][2] == ' ':
-            # if ANY spot is empty, game is not a draw yet
-            return False
-      return True
-             # If no spaces left, it's a draw
-    """
+ """
       Checks if the game board is full.
 
       Parameters:
       board (list): 2D game board
 
       Returns:
-       True if draw, False otherwise
-      """         
+       bool: True if draw, False otherwise
+      """ 
+            if board [0][0] == ' ' or board [0][1] == ' ' or board [0][2] == ' ' or board [1][0]  or board [1][1] == ' '  or board [1][2] == ' '   or board [2][0] == ' 'or board [2][1] == ' '  or board [2][2] == ' ':
+            # if ANY spot is empty, game is not a draw yet
+            return False
+      return True
+             # If no spaces left, it's a draw
+          
 
 def check_winner_board(board): ## Checks if someone won the game
+          """
+      Checks if a player has won the game.
+
+      Parameters:
+      board (list): 2D game board
+
+      Returns:
+      bool: True if someone won, False otherwise
+      """  
       while True:
                # Top row win for x
             if board[0][0] == 'x' and board[0][1] == 'x' and board[0][2] == 'x':
@@ -144,17 +159,15 @@ def check_winner_board(board): ## Checks if someone won the game
                   return True
             else:     # No winner found
                   return False
-            """
-      Checks if a player has won the game.
-
-      Parameters:
-      board (list): 2D game board
-
-      Returns:
-      bool: True if someone won, False otherwise
-      """                                                                         
+            
+                                                                         
 
 def main(): # Main game function
+   """
+Runs the tic tac toe game loop.
+Handles player setup, turns,
+winner checking, and replay option.
+"""
       while True:
            # Allows game replay
 
@@ -197,10 +210,6 @@ def main(): # Main game function
             play_again = input("do you want to play again(y,n)") # Ask to play again
             if play_again == 'n':   # Ends game if player types n
                   break
-      """
-Runs the tic tac toe game loop.
-Handles player setup, turns,
-winner checking, and replay option.
-"""
+     
 main()
         
