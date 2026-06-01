@@ -3,8 +3,10 @@ def display_board(board): # Prints the tic tac toe board
       """
       Displays the current tic tac toe board.
 
-      Parameters:
-      board  representing the game board
+      Args:
+            board (list): representing the game board
+      Prints:
+            print: organized game board
       """
       print(f"""
 1  {board[0][0]} | {board[0][1]} | {board[0][2]}
@@ -16,15 +18,14 @@ def display_board(board): # Prints the tic tac toe board
 
 def player_move(board, player):
       """
-      Lets a player choose a row and column and places their symbol on the board.
+      Prompts player to choose a row and column and places their symbol on the board.
 
       Args:
             board (list): 2D game board
             player (str): Current player's symbol ('x' or 'o')
       Raises:
-            ValueError: WHEN
-      """
-                 
+            ValueError: When the user does not enter an integer
+      """      
       while True:
             while True: ## Keeps asking until a valid move is made
                   try:  # Ask player for column and subtract 1
@@ -55,116 +56,86 @@ def is_draw(board): # Checks if the game is a draw
       """
       Checks if the game board is full.
 
-      Parameters:
+      Args:
             board (list): 2D game board
-
       Returns:
             bool: True if draw, False otherwise
       """ 
-      if board [0][0] == ' ' or board [0][1] == ' ' or board [0][2] == ' ' or board [1][0]  or board [1][1] == ' '  or board [1][2] == ' '   or board [2][0] == ' 'or board [2][1] == ' '  or board [2][2] == ' ':
-            # if ANY spot is empty, game is not a draw yet
-            return False
-      return True
-             # If no spaces left, it's a draw
+      return board [0][0] == ' ' or board [0][1] == ' ' or board [0][2] == ' ' or board [1][0]  or board [1][1] == ' '  or board [1][2] == ' '   or board [2][0] == ' 'or board [2][1] == ' '  or board [2][2] == ' '
           
 
 def check_winner_board(board): ## Checks if someone won the game
       """
       Checks if a player has won the game.
 
-      Parameters:
+      Args:
             board (list): 2D game board
-
       Returns:
             bool: True if someone won, False otherwise
       """  
       while True:
+            win = True
                   # Top row win for x
             if board[0][0] == 'x' and board[0][1] == 'x' and board[0][2] == 'x':
                   print('x has won the game')
-                  return True
                         # Top row win for o
             elif board[0][0] == 'o' and board [1][1] == 'o' and board [1][2] == 'o':
                   print('o has won the game')
-                  return True
                   # Middle row win for x
-            if board[1][0] == 'x' and board [1][1] == 'x' and board [1][2] == 'x':
+            elif board[1][0] == 'x' and board [1][1] == 'x' and board [1][2] == 'x':
                   print('x has won the game')
-                  return True
                   # Middle row win for o
             elif board[1][0] == 'o' and board [1][1] == 'o' and board [1][2] == 'o':
                   print('o has won the game')
-                  return True
-            if board[2][0] == 'x' and board [2][1] == 'x' and board [2][2] == 'x':
+            elif board[2][0] == 'x' and board [2][1] == 'x' and board [2][2] == 'x':
                   print('x has won the game')
-                  return True
             # Bottom row win for x
             elif board[2][2] == 'o' and board [2][1] == 'o' and board [2][2] == 'o':
                   print('o has won the game')
-                  return True
                   # Bottom row win for o
             elif board[0][0] == 'x' and board [1][0] == 'x' and board [2][0] == 'x':
                   print('x has won the game')
-                  return True
                   # Left column win for x
             elif board[0][0] == 'o' and board [1][0] == 'o' and board [2][0] == 'o':
                   print('o has won the game')
-                  return True
                   # Left column win for o
             elif board [0][1] == 'x' and board [1][1] == 'x' and board [2][1] == 'x':
                   print('x has won the game')
-                  return True
                   # Middle column win for x
             elif board [0][1] == 'o' and board [1][1] == 'o' and board [2][1] == 'o':
                   print('o has won the game')
-                  return True
             # Middle column win for o
             elif board [0][2] == 'x' and board [1][2] == 'x' and board [2][2] == 'x':
                   print('x has won the game')
-                  return True
             # Right column win for x
             elif board [0][2] == 'o' and board [1][2] == 'o' and board [2][2] == 'x':
                   print('o has won the game')
-                  return True
             # Right column win for o
             elif board [0][0] == 'x' and board [1][1] == 'x' and board [2][2] == 'x':
                   print('x has won the game')
-                  return True
             # Diagonal win top-left to bottom-right for x
             elif board [0][0] == 'o' and board [1][1] == 'o' and board [2][2] == 'o':
                   print('o has won the game')
-                  return True
             # Diagonal win top-left to bottom-right for o
             elif board [2][0] == 'x' and board [1][1] == 'x' and board [0][2] == 'x':
                   print('x has won the game')
-                  return True
                   # Diagonal win (bottom-left to top-right) for x
             elif board [2][0] == 'o' and board [1][1] == 'o' and board [0][2] == 'o':
                   print('o has won the game')
-                  return True
             # Diagonal win (bottom-left to top-right) for o
             elif board [0][2] == 'x' and board [1][2] == 'x' and board [2][2] == 'x':
                   print('x has won the game')
-                  return True
             # Diagonal win (bottom-left to top-right) for x
             elif board [0][2] == 'o' and board [1][2] == 'o' and board [2][2] == 'o':
                   print('o has won the game')
-                  return True
             else:     # No winner found
-                  return False
-            
-                                                                         
+                  win = False
+            return win
+                                                           
 
 def main(): # Main game function
-      """
-            Runs the tic tac toe game loop.
-            Handles player setup, turns,
-            winner checking, and replay option.
-      """
       while True:
            # Allows game replay
-
-
 
             board = [[" "," "," ",],
                   [" "," "," ",],
@@ -191,7 +162,7 @@ def main(): # Main game function
                         break
                   display_board(board) 
                   # Show updated board
-                  if is_draw(board):  # Check for draw
+                  if not is_draw(board):  # Check for draw
                         print("game is a ties")
                         break
                   player_move(board, player2)  # Player 2 move
